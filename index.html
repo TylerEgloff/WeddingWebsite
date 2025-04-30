@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cody & Linda Wedding</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      text-align: center;
+      background-color: white;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 1;
+      background: white;
+    }
+
+    .header-script {
+      font-family: "Pinyon Script", cursive;
+      font-size: 4.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .couple-name {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.2rem;
+    }
+
+    .wedding-info {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .main-photo {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+
+    .main-photo-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Vertically center overlay */
+    }
+
+    .big-rsvp {
+      margin: 2rem auto;
+    }
+
+    .nav-link,
+    .fullpage-nav a {
+      color: black !important;
+      text-decoration: none !important;
+    }
+
+    .nav-link:hover,
+    .fullpage-nav a:hover {
+      color: #555 !important;
+      text-decoration: underline;
+    }
+
+    .navbar-toggler {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1060;
+    }
+
+    .navbar-toggler-icon {
+      display: inline-block;
+      width: 2em;
+      height: 2em;
+      vertical-align: middle;
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+    }
+
+    .fullpage-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .fullpage-nav.show {
+      transform: translateY(0);
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .fullpage-nav a {
+      font-size: 2rem;
+      margin: 1rem;
+      text-decoration: none;
+      color: black;
+    }
+
+    body.nav-open {
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .fullpage-nav {
+        display: none !important;
+      }
+
+      .navbar-standard {
+        display: block;
+      }
+
+      .navbar-toggler {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-standard {
+        display: none;
+      }
+    }
+
+    .event-row {
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .event-row {
+        gap: 1.5rem;
+      }
+    }
+
+    .footer-section {
+      text-align: center;
+    }
+
+    #countdown-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      background: none;
+      z-index: 10;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .countdown-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .countdown-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+    }
+
+    .countdown-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .countdown-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.08em;
+      margin-top: 0.2em;
+      text-transform: uppercase;
+      border-bottom: none;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .countdown-sep {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      margin: 0 0.3em;
+      line-height: 1.1;
+      user-select: none;
+      transform:translateY(-75%);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 600px) {
+      .countdown-row {
+        gap: 0.5rem;
+      }
+      .countdown-col {
+        min-width: 36px;
+      }
+      .countdown-num {
+        font-size: 1.3rem;
+      }
+      .countdown-label {
+        font-size: 0.7rem;
+      }
+      .countdown-sep {
+        font-size: 1.3rem;
+        margin: 0 0.15em;
+      }
+    }
+
+    .modal-dialog {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - 1rem);
+    }
+    .modal-content {
+      margin: auto;
+    }
+    /* Dark styling overrides */
+    .btn-primary {
+      background-color: black;
+      border-color: black;
+    }
+    .btn-primary:hover {
+      background-color: #222;
+      border-color: #222;
+    }
+    .form-check-input:checked {
+      background-color: black;
+      border-color: black;
+    }
+    #loadingIndicator {
+      display: none;
+      font-size: 0.9rem;
+      color: gray;
+      margin-top: 0.25rem;
+    }
+    .alert-custom {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    .alert-error {
+      background-color: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+    .alert-success {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #badbcc;
+    }
+
+    .vines-bg {
+      position: fixed;
+      top: 0;
+      right: 0;
+      transform: translateX(50%) translateY(10%);
+      height: 100vh;
+      width: auto;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .vines-bg2 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-50%) translateY(10%) scaleX(-1);
+      height: 100vh;
+      width: auto;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="vines.png" alt="Decorative vines" class="vines-bg">
+  <img src="vines.png" alt="Decorative vines2" class="vines-bg2">
+  <div class="header-script">Our Wedding</div>
+  <div class="couple-name">CODY & LINDA</div>
+  <div class="wedding-info">SEPTEMBER 5, 2024 • WALTON, KY</div>
+
+  <nav class="navbar navbar-light navbar-standard">
+    <div class="container justify-content-center">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Photos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">RSVP</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="fullpage-nav" id="fullNav">
+    <a href="#">Home</a>
+    <a href="#">Photos</a>
+    <a href="#">RSVP</a>
+  </div>
+
+  <div class="main-photo-container">
+    <img src="banner.jpg" alt="Couple Photo" class="main-photo">
+    <div id="countdown-overlay">
+      <div id="countdown-row" class="countdown-row">
+        <div class="countdown-col">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-label">DAYS</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-col">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-label">HOURS</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-col">
+          <span class="countdown-num" id="cd-minutes">00</span>
+          <span class="countdown-label">MINUTES</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-col">
+          <span class="countdown-num" id="cd-seconds">00</span>
+          <span class="countdown-label">SECONDS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RSVP Modal Triggered by Button -->
+  <div class="big-rsvp">
+    <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#rsvpModal">RSVP</button>
+  </div>
+
+  <!-- RSVP Modal -->
+  <!-- New RSVP Modal and Script -->
+  <div class="modal fade" id="rsvpModal" tabindex="-1" aria-labelledby="rsvpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rsvpModalLabel">Find Your Party</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="guestName" class="form-label">Enter your name</label>
+            <input type="text" class="form-control" id="guestName" placeholder="e.g. Tyler Egloff">
+            <div id="loadingIndicator">Searching...</div>
+            <div id="guestError" class="alert-custom alert-error">Guest not found. Please check the spelling or try another name.</div>
+          </div>
+          <div id="partyList" class="mt-3" style="display: none;">
+            <h6>Your Party</h6>
+            <form id="rsvpForm"></form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div id="rsvpSuccess" class="alert-custom alert-success">RSVP submitted!</div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitRSVP()">RSVP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="wedding-day-section container my-5">
+    <div class="wedding-day-title mb-2"
+      style="font-family: 'Playfair Display', serif; font-size:2.2rem; letter-spacing:0.1em;">WEDDING DAY</div>
+    <div class="wedding-day-date mb-4"
+      style="font-family: 'Playfair Display', serif; font-size:1.2rem; letter-spacing:0.15em;">SEPTEMBER 5, 2024</div>
+    <div class="wedding-day-location mb-4 mt-2" style="font-family: 'Georgia', serif; font-size:1rem;">
+      The Venue<br>
+      123 Wedding Lane, Walton, KY
+    </div>
+    <hr class="mb-4" style="border-top:1.5px solid #bbb;">
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-8">
+        <div class="d-flex flex-column align-items-center mb-4 event-row text-center">
+          <div class="wedding-time"
+            style="font-family:'Playfair Display', serif; font-size:1.1rem; letter-spacing:0.1em; min-width:120px;">
+            5:00 PM – 6:00 PM
+          </div>
+          <div class="wedding-event mt-1"
+            style="font-family:'Playfair Display', serif; font-size:1.1rem; letter-spacing:0.1em;">
+            CEREMONY
+          </div>
+        </div>
+        <hr class="my-4" style="border-top:1px solid #ccc;">
+        <div class="d-flex flex-column align-items-center event-row text-center">
+          <div class="wedding-time"
+            style="font-family:'Playfair Display', serif; font-size:1.1rem; letter-spacing:0.1em; min-width:120px;">
+            6:00 PM – 9:00 PM
+          </div>
+          <div class="wedding-event mt-1"
+            style="font-family:'Playfair Display', serif; font-size:1.1rem; letter-spacing:0.1em;">
+            RECEPTION
+          </div>
+        </div>
+        <hr class="mb-1 mt-4" style="border-top:1px solid #ccc;">
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-section mt-2 mb-4">
+    <div style="font-family:'Playfair Display', serif; font-size:2.5rem; font-weight:600; letter-spacing:0.1em;">C &amp;
+      L</div>
+    <hr style="width:120px; margin:0.5rem auto 0.5rem auto; border-top:1.5px solid #222;">
+    <div style="font-family:'Playfair Display', serif; font-size:1.1rem; font-weight:600; letter-spacing:0.15em;">
+      9.5.2024</div>
+  </footer>
+
+  <script>
+    const fullNav = document.getElementById('fullNav');
+    const navToggler = document.querySelector('.navbar-toggler');
+    const navLinks = fullNav.querySelectorAll('a');
+
+    function toggleNav() {
+      fullNav.classList.toggle('show');
+      document.body.classList.toggle('nav-open', fullNav.classList.contains('show'));
+    }
+
+    navToggler.onclick = toggleNav;
+
+    navLinks.forEach(link => {
+      link.onclick = () => {
+        fullNav.classList.remove('show');
+        document.body.classList.remove('nav-open');
+      };
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        fullNav.classList.remove('show');
+        document.body.classList.remove('nav-open');
+      }
+    });
+
+    function pad(n) {
+      return n.toString().padStart(2, '0');
+    }
+
+    function updateCountdown() {
+      const weddingDate = new Date("2025-09-05T17:00:00-04:00"); // 5:00 PM EDT (UTC-4)
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      let days = 0, hours = 0, minutes = 0, seconds = 0;
+      if (diff > 0) {
+        days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        minutes = Math.floor((diff / (1000 * 60)) % 60);
+        seconds = Math.floor((diff / 1000) % 60);
+      }
+
+      document.getElementById('cd-days').textContent = pad(days);
+      document.getElementById('cd-hours').textContent = pad(hours);
+      document.getElementById('cd-minutes').textContent = pad(minutes);
+      document.getElementById('cd-seconds').textContent = pad(seconds);
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Mock database
+    const guestDB = {
+      "tyler egloff": ["Tyler Egloff", "Macey Egloff"],
+      "john doe": ["John Doe"]
+    };
+
+    document.getElementById("guestName").addEventListener("change", function () {
+      const input = this.value.toLowerCase().trim();
+      const partyList = document.getElementById("partyList");
+      const form = document.getElementById("rsvpForm");
+      const loadingIndicator = document.getElementById("loadingIndicator");
+      const errorBox = document.getElementById("guestError");
+
+      form.innerHTML = "";
+      partyList.style.display = "none";
+      errorBox.style.display = "none";
+      loadingIndicator.style.display = "block";
+
+      setTimeout(() => {
+        const party = guestDB[input];
+        loadingIndicator.style.display = "none";
+
+        if (party) {
+          partyList.style.display = "block";
+          party.forEach(name => {
+            const id = name.toLowerCase().replace(/\s+/g, "-");
+            form.innerHTML += `
+              <div class="form-check text-start">
+                <input class="form-check-input" type="checkbox" id="${id}" name="guests" value="${name}" checked>
+                <label class="form-check-label" for="${id}">${name}</label>
+              </div>`;
+          });
+        } else {
+          errorBox.style.display = "block";
+        }
+      }, 500);
+    });
+
+    function submitRSVP() {
+      const checkboxes = document.querySelectorAll("#rsvpForm input[type=checkbox]:checked");
+      const attending = Array.from(checkboxes).map(cb => cb.value);
+      const successBox = document.getElementById("rsvpSuccess");
+      const submitBtn = document.getElementById("submitBtn");
+
+      if (attending.length > 0) {
+        successBox.style.display = "block";
+        submitBtn.textContent = "Submitted";
+        submitBtn.classList.remove("btn-primary");
+        submitBtn.classList.add("btn-success");
+        submitBtn.disabled = true;
+        // Later: send data to backend
+      }
+    }
+  </script>
+</body>
+
+</html>

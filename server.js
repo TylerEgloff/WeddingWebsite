@@ -17,7 +17,7 @@ app.use(express.static('public'));
 // Initialize Supabase (server-side)
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY // Never use this client-side!
+  process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
 // Routes

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">    <meta name="Author" content="Tyler Egloff">
+    <meta name="Description" content="Cody and Linda's wedding website.">
+    <title>Q&A - Cody & Linda's Wedding</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <img src="home-img/vines.png" alt="Decorative vines" class="vines-bg">
+    <img src="home-img/vines.png" alt="Decorative vines2" class="vines-bg2">
+    <div class="header-script">Our Wedding</div>
+    <div class="couple-name">CODY & LINDA</div>
+    <div class="wedding-info mb-5">SEPTEMBER 27, 2025 • WALTON, KY</div>
+
+    <nav class="navbar navbar-light navbar-standard">
+        <div class="container justify-content-center">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="photos.html">Photos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="questions.html">Q&A</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#rsvpModal">RSVP</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Mobile nav -->
+    <div class="fullpage-nav" id="fullNav">
+        <a href="index.html">Home</a>
+        <a href="photos.html">Photos</a>
+        <a class="nav-link" href="questions.html">Q&A</a>
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#rsvpModal">RSVP</a>
+    </div>
+
+    <h2 class="text-center" style="font-family: 'Playfair Display', serif; font-size:2.2rem; font-weight:bold;">
+        FREQUENTLY ASKED QUESTIONS</h2>
+
+    <div style="padding:0 10px;">
+        <hr class="mb-0" style="border-top:1.5px solid #bbb; margin: 0 auto; max-width: 1400px;">
+    </div>
+
+    <!-- Q&A Section -->
+    <section class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="qa-item mb-4">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">What is the
+                        address of the wedding?
+                    </h4>
+                    <p class="ms-3">The Bluegrass Barn<br>144 S Main St. Crittenden, KY 41030</p>
+                </div>
+
+                <hr class="my-4" style="border-top:1px solid #ccc;">
+
+                <div class="qa-item mb-4">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">What is the time
+                        of the wedding?
+                    </h4>
+                    <p class="ms-3">The ceremony begins at 4:00 PM, followed by social hour at 5:00 PM and reception
+                        from 6:00 PM to 9:00 PM.</p>
+                </div>
+
+                <hr class="my-4" style="border-top:1px solid #ccc;">
+
+                <div class="qa-item mb-4">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">Are plus-ones
+                        allowed?
+                    </h4>
+                    <p class="ms-3">We attempted to offer plus one's in our registry system to everyone who requires
+                        them.
+                        Please contact the bride to inquire about additional plus ones.</p>
+                </div>
+
+                <hr class="my-4" style="border-top:1px solid #ccc;">
+
+                <div class="qa-item mb-4">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">Are children
+                        allowed?
+                    </h4>
+                    <p class="ms-3">The wedding party would prefer to host this event for our grown-up friends and
+                        family.
+                        We do understand the difficulties in honoring this request, so please contact the bride if you
+                        have unavoidable circumstances.</p>
+                </div>
+
+                <hr class="my-4" style="border-top:1px solid #ccc;">
+
+                <div class="qa-item">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">Where can I park?
+                    </h4>
+                    <p class="ms-3">Our venue will provide parking, so travel directly to the listed address.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Modal Button -->
+    <div class="big-rsvp">
+        <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#rsvpModal">RSVP</button>
+    </div>
+
+    <!-- RSVP Modal -->
+    <div class="modal fade" id="rsvpModal" tabindex="-1" aria-labelledby="rsvpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rsvpModalLabel">Find Your Party</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="guestName" class="form-label">Enter your name</label>
+                        <input type="text" class="form-control" id="guestName">
+                        <div id="loadingIndicator">Searching...</div>
+                        <div id="guestError" class="alert-custom alert-error" style="display: none;">Guest not found.
+                            Please check
+                            the spelling or try
+                            another name.</div>
+                    </div>
+                    <div id="partyList" class="mt-3" style="display: none;">
+                        <form id="rsvpForm"></form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="rsvpSuccess" class="alert-custom alert-success">RSVP submitted!</div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitBtn" onclick="submitRSVP()">RSVP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating home button -->
+    <a href="index.html" class="float-home">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </svg>
+    </a>
+
+    <footer class="footer-section mt-2 mb-4">
+        <div style="font-family:'Playfair Display', serif; font-size:2.5rem; font-weight:600; letter-spacing:0em;">C
+            &amp; L</div>
+        <hr style="width:120px; margin:0.5rem auto 0.5rem auto; border-top:1.5px solid #222;">
+        <div style="font-family:'Playfair Display', serif; font-size:1.1rem; font-weight:600; letter-spacing:0.15em;">
+            9.27.2025</div>
+    </footer>
+
+    <!-- Include your existing scripts -->
+    <script src="form.js"></script>
+    <script src="nav.js"></script>
+</body>
+
+</html>

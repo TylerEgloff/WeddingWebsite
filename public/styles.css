@@ -1,0 +1,341 @@
+    body {
+      font-family: 'Georgia', serif;
+      text-align: center;
+      background-color: white;
+      overflow-x: hidden;
+      position: relative;
+      z-index: 1;
+      background: white;
+    }
+
+    .header-script {
+      font-family: "Pinyon Script", cursive;
+      font-size: 4.5rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      text-decoration: none;
+    }
+
+    .couple-name {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.2rem;
+    }
+
+    .wedding-info {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .main-photo {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+
+    .main-photo-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .big-rsvp {
+      margin: 2rem auto;
+    }
+
+    .nav-link,
+    .fullpage-nav a {
+      color: black !important;
+      text-decoration: underline !important;
+    }
+
+    .nav-link:hover,
+    .fullpage-nav a:hover {
+      color: #666666 !important;
+      text-decoration: underline !important;
+    }
+
+    .navbar-toggler {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1060;
+    }
+
+    .navbar-toggler-icon {
+      display: inline-block;
+      width: 2em;
+      height: 2em;
+      vertical-align: middle;
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+    }
+
+    .fullpage-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1050;
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .fullpage-nav.show {
+      transform: translateY(0);
+      pointer-events: auto;
+      opacity: 1;
+    }
+
+    .fullpage-nav a {
+      font-size: 2rem;
+      margin: 1rem;
+      text-decoration: none;
+      color: black;
+    }
+
+    body.nav-open {
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .fullpage-nav {
+        display: none !important;
+      }
+
+      .navbar-standard {
+        display: block;
+      }
+
+      .navbar-toggler {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-standard {
+        display: none;
+      }
+    }
+
+    .event-row {
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .event-row {
+        gap: 1.5rem;
+      }
+    }
+
+    .footer-section {
+      text-align: center;
+    }
+
+    #countdown-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      background: none;
+      z-index: 10;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .countdown-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .countdown-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+    }
+
+    .countdown-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .countdown-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.08em;
+      margin-top: 0.2em;
+      text-transform: uppercase;
+      border-bottom: none;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .countdown-sep {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: white;
+      margin: 0 0.3em;
+      line-height: 1.1;
+      user-select: none;
+      transform: translateY(-75%);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 600px) {
+      .countdown-row {
+        gap: 0.5rem;
+      }
+
+      .countdown-col {
+        min-width: 36px;
+      }
+
+      .countdown-num {
+        font-size: 1.3rem;
+      }
+
+      .countdown-label {
+        font-size: 0.7rem;
+      }
+
+      .countdown-sep {
+        font-size: 1.3rem;
+        margin: 0 0.15em;
+      }
+    }
+
+    .modal-dialog {
+      display: flex;
+      align-items: center;
+      min-height: calc(100vh - 1rem);
+    }
+
+    .modal-content {
+      margin: auto;
+    }
+
+    /* Dark styling overrides */
+    .btn-primary {
+      background-color: black;
+      border-color: black;
+    }
+
+    .btn-primary:hover {
+      background-color: #222;
+      border-color: #222;
+    }
+
+    .form-check-input:checked {
+      background-color: black;
+      border-color: black;
+    }
+
+    #loadingIndicator {
+      display: none;
+      font-size: 0.9rem;
+      color: gray;
+      margin-top: 0.25rem;
+    }
+
+    .alert-custom {
+      display: none;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .alert-error {
+      background-color: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+
+    .alert-success {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #badbcc;
+    }
+
+    .vines-bg {
+      position: fixed;
+      top: 0;
+      right: 0;
+      transform: translateX(50%) translateY(10%);
+      height: 100vh;
+      width: auto;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .vines-bg2 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translateX(-50%) translateY(10%) scaleX(-1);
+      height: 100vh;
+      width: auto;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .custom-checkbox .form-check-input {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.2rem;
+      border: 2px solid #666;
+      cursor: pointer;
+    }
+
+    .custom-checkbox .form-check-label {
+      padding-left: 0.5rem;
+      cursor: pointer;
+    }
+
+    .party-header:hover {
+      background-color: #f8f9fa !important;
+    }
+
+    .guest-list {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }

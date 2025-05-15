@@ -28,17 +28,17 @@ app.get('/', (req, res) => {
 // Endpoint for searching guests and finding their party 
 app.post('/api/search-guests', async (req, res) => {
   const { query } = req.body;
-  
+
   try {
     const cleanQuery = query.trim();
     // Split the query into words
     const words = cleanQuery.split(/\s+/);
-    
+
     let supabaseQuery = supabase
       .from('guests')
       .select(`
         *,
-        parties:party_id (party_name)
+        parties:party_id (party_name, has_responded)
       `);
 
     if (words.length === 1) {
@@ -64,7 +64,7 @@ app.post('/api/search-guests', async (req, res) => {
     }
 
     // Filter out completely null guests (plus ones with no name)
-    const filteredGuests = guests.filter(guest => 
+    const filteredGuests = guests.filter(guest =>
       guest.first_name || guest.last_name || guest.is_plus_one
     );
 
@@ -75,6 +75,7 @@ app.post('/api/search-guests', async (req, res) => {
         partiesMap.set(guest.party_id, {
           party_id: guest.party_id,
           party_name: guest.parties.party_name,
+          has_responded: guest.parties.has_responded,
           guests: []
         });
       }
@@ -105,7 +106,7 @@ app.post('/api/get-party-guests', async (req, res) => {
 });
 
 app.post('/api/submit-rsvp', async (req, res) => {
-  const { guestUpdates } = req.body;
+  const { guestUpdates, partyId } = req.body;
 
   try {
     // Update guest attendance
@@ -114,6 +115,14 @@ app.post('/api/submit-rsvp', async (req, res) => {
       .upsert(guestUpdates);
 
     if (guestError) throw guestError;
+
+    // Mark party as responded
+    const { error: partyError } = await supabase
+      .from('parties')
+      .update({ has_responded: true })
+      .eq('party_id', partyId);
+
+    if (partyError) throw partyError;
 
     res.json({ success: true });
   } catch (err) {

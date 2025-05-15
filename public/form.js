@@ -27,11 +27,21 @@ function createPartyElement(party) {
     partyHeader.style.cursor = 'pointer';
 
     const partyName = document.createElement('div');
-    partyName.className = 'mb-1';
+    partyName.className = 'mb-1 d-flex justify-content-between align-items-center';
     partyName.innerHTML = `
     <span class="fw-bold" style="font-size: 1.1rem;">${party.party_name}</span>
-    <span class="arrow float-end">&#9660;</span>
-  `;
+    <span class="party-badge-arrow">
+      ${party.has_responded ? `
+        <span class="badge bg-success d-inline-flex align-items-center" style="margin-right:0.5rem;">
+          RSVP
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 16 16" style="margin-left:0.3em;">
+            <path fill="currentColor" d="M6.173 12.027a.75.75 0 0 1-1.06 0l-3.14-3.14a.75.75 0 1 1 1.06-1.06l2.61 2.61 5.44-5.44a.75.75 0 0 1 1.06 1.06l-6 6z"/>
+          </svg>
+        </span>
+      ` : ''}
+      <span class="arrow float-end">&#9660;</span>
+    </span>
+`;
 
     partyHeader.appendChild(partyName);
 
@@ -167,6 +177,21 @@ async function submitRSVP() {
 
         if (result.success) {
             document.getElementById('rsvpSuccess').style.display = 'block';
+
+            const partyHeader = document.querySelector('.party-header');
+            if (partyHeader && !partyHeader.querySelector('.badge.bg-success')) {
+                const badgeContainer = partyHeader.querySelector('.party-badge-arrow');
+                if (badgeContainer) {
+                    badgeContainer.insertAdjacentHTML('afterbegin', `
+          <span class="badge bg-success d-inline-flex align-items-center" style="margin-right:0.5rem;">
+            RSVP
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 16 16" style="margin-left:0.3em;">
+              <path fill="currentColor" d="M6.173 12.027a.75.75 0 0 1-1.06 0l-3.14-3.14a.75.75 0 1 1 1.06-1.06l2.61 2.61 5.44-5.44a.75.75 0 0 1 1.06 1.06l-6 6z"/>
+            </svg>
+          </span>
+        `);
+                }
+            }
         } else {
             alert('RSVP failed: ' + (result.error || 'Unknown error'));
         }

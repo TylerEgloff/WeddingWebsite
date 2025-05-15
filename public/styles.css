@@ -256,6 +256,25 @@ body.nav-open {
   margin: auto;
 }
 
+.party-header .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+    margin-right: 0.5rem;
+}
+
+.party-name-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.party-badge-arrow {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 0.3rem;
+}
+
 .btn-primary {
   background-color: black;
   border-color: black;

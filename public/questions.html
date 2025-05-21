@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">    <meta name="Author" content="Tyler Egloff">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="Author" content="Tyler Egloff">
     <meta name="Description" content="Cody and Linda's wedding website.">
     <title>Q&A - Cody & Linda's Wedding</title>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -73,7 +75,8 @@
                     <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">What is the
                         address of the wedding?
                     </h4>
-                    <p class="ms-3" style="font-size:1.1rem;">The Bluegrass Barn<br>144 S Main St. Crittenden, KY 41030</p>
+                    <p class="ms-3" style="font-size:1.1rem;">The Bluegrass Barn<br>144 S Main St. Crittenden, KY 41030
+                    </p>
                 </div>
 
                 <hr class="my-4" style="border-top:1px solid #ccc;">
@@ -82,7 +85,32 @@
                     <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">What is the time
                         of the wedding?
                     </h4>
-                    <p class="ms-3" style="font-size:1.1rem;">The ceremony begins at 4:00 PM, followed by social hour at 5:00 PM and the reception at 6:00 PM. 
+                    <p class="ms-3" style="font-size:1.1rem;">The ceremony begins at 4:00 PM, followed by social hour at
+                        5:00 PM and the reception at 6:00 PM.
+                    </p>
+                </div>
+
+                <hr class="my-4" style="border-top:1px solid #ccc;">
+
+                <div class="qa-item mb-4">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">What should I
+                        wear?
+                    </h4>
+                    <p class="ms-3" style="font-size:1.1rem;">We expect a semi-formal attire so you can stay comfortable
+                        and not worry about meeting high expectations.
+                    </p>
+                </div>
+
+                <hr class="my-4" style="border-top:1px solid #ccc;">
+
+                <div class="qa-item mb-4">
+                    <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">Should I bring a
+                        gift?
+                    </h4>
+                    <p class="ms-3" style="font-size:1.1rem;">Gifts are never required but always appreciated.
+                        Our webpage has a gifts section including a <a
+                            href="https://www.amazon.com/wedding/registry/1M5RWP3UUT3B0" rel="noopener">link</a> to our
+                        Amazon registry where gifts can be sent straight to us, or feel free to bring a gift straight to the wedding.
                     </p>
                 </div>
 
@@ -102,7 +130,8 @@
                     <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">Are children
                         allowed?
                     </h4>
-                    <p class="ms-3" style="font-size:1.1rem;">The wedding party would prefer to host this event for our grown-up friends and
+                    <p class="ms-3" style="font-size:1.1rem;">The wedding party would prefer to host this event for our
+                        grown-up friends and
                         family.
                         We do understand the difficulties in honoring this request, so please contact the bride if you
                         have unavoidable circumstances.</p>
@@ -113,7 +142,8 @@
                 <div class="qa-item">
                     <h4 class="mb-3" style="font-family: 'Playfair Display', serif; font-weight:600;">Where can I park?
                     </h4>
-                    <p class="ms-3" style="font-size:1.1rem;">Our venue will provide parking, so travel directly to the listed address.</p>
+                    <p class="ms-3" style="font-size:1.1rem;">Our venue will provide parking, so travel directly to the
+                        listed address.</p>
                 </div>
 
             </div>
@@ -173,6 +203,18 @@
 
     <script src="form.js"></script>
     <script src="nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var registryLinks = document.querySelectorAll('a[href*="amazon.com/wedding/registry"]');
+            if (!registryLinks.length) return;
+            var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (!isMobile) {
+                registryLinks.forEach(function (link) {
+                    link.setAttribute('target', '_blank');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

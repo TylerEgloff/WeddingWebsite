@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">    <meta name="Author" content="Tyler Egloff">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="Author" content="Tyler Egloff">
     <meta name="Description" content="Cody and Linda's wedding website.">
     <title>Photos - Cody & Linda's Wedding</title>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -208,6 +210,10 @@
     <div class="big-rsvp">
         <button class="btn btn-dark btn-lg" data-bs-toggle="modal" data-bs-target="#rsvpModal">RSVP</button>
     </div>
+
+    <form id="rsvpForm">
+        <input type="text" name="website" id="honeypot" style="display:none;" tabindex="-1" autocomplete="off">
+    </form>
 
     <footer class="footer-section mt-2 mb-4">
         <div style="font-family:'Playfair Display', serif; font-size:2.5rem; font-weight:600; letter-spacing:0em;">C

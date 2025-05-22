@@ -20,6 +20,38 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
+// Store request counts per IP for rate limiting
+const requestCounts = {};
+
+// Custom rate limiter middleware for RSVP submissions
+// https://medium.com/@ignatovich.dm/creating-a-simple-api-rate-limiter-with-node-a834d03bad7a
+const rateLimiter = (req, res, next) => {
+  const ip = req.ip;
+  const now = Date.now();
+
+  if (!requestCounts[ip]) {
+    requestCounts[ip] = { count: 1, lastRequest: now };
+  } else {
+    const timeSinceLastRequest = now - requestCounts[ip].lastRequest;
+    const timeLimit = 15 * 60 * 1000; // 15 minutes
+
+    if (timeSinceLastRequest < timeLimit) {
+      requestCounts[ip].count += 1;
+    } else {
+      requestCounts[ip] = { count: 1, lastRequest: now }; // Reset after time window
+    }
+  }
+
+  const maxRequests = 3;
+
+  if (requestCounts[ip].count > maxRequests) {
+    return res.status(429).json({ message: 'Too many requests, please try again later.' });
+  }
+
+  requestCounts[ip].lastRequest = now;
+  next();
+};
+
 // Routes
 app.get('/', (req, res) => {
   res.send('Wedding RSVP Server Running');
@@ -105,8 +137,13 @@ app.post('/api/get-party-guests', async (req, res) => {
   }
 });
 
-app.post('/api/submit-rsvp', async (req, res) => {
-  const { guestUpdates, partyId } = req.body;
+// Apply rate limiter only to RSVP submission endpoint
+app.post('/api/submit-rsvp', rateLimiter, async (req, res) => {
+  const { guestUpdates, partyId, honeypot } = req.body;
+
+  if (honeypot) {
+    return res.status(400).json({ error: 'Bot detected.' });
+  }
 
   try {
     // Update guest attendance

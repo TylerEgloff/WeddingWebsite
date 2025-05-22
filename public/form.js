@@ -159,6 +159,12 @@ async function submitRSVP() {
         is_attending: cb.checked
     }));
 
+    const honeypot = document.getElementById('honeypot');
+    if (honeypot && honeypot.value) {
+        alert('Submission rejected.');
+        return;
+    }
+
     if (guestUpdates.length === 0) {
         alert('Please select at least one guest');
         return;
@@ -172,7 +178,7 @@ async function submitRSVP() {
         const result = await fetch('/api/submit-rsvp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ guestUpdates, partyId })
+            body: JSON.stringify({ guestUpdates, partyId, honeypot: honeypot ? honeypot.value : '' })
         }).then(res => res.json());
 
         if (result.success) {

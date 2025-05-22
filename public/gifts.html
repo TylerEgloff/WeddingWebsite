@@ -69,7 +69,8 @@
 
     <section class="container my-3" style="max-width:700px;">
         <div class="mb-3" style="font-size:1.2rem; font-family:'Georgia',serif;">
-            Gifts are never required but always appreciated. If you wish, you may bring a gift in person, or feel free to visit our Amazon wedding registry where gifts can be sent straight to us.
+            Gifts are never required but always appreciated. If you wish, you may bring a gift in person, or feel free
+            to visit our Amazon wedding registry where gifts can be sent straight to us.
         </div>
         <div class="d-flex justify-content-center mb-4">
             <a href="https://www.amazon.com/wedding/registry/1M5RWP3UUT3B0" rel="noopener"
@@ -153,6 +154,10 @@
         </svg>
     </a>
 
+    <form id="rsvpForm">
+        <input type="text" name="website" id="honeypot" style="display:none;" tabindex="-1" autocomplete="off">
+    </form>
+
     <footer class="footer-section mt-2 mb-4">
         <div style="font-family:'Playfair Display', serif; font-size:2.5rem; font-weight:600; letter-spacing:0em;">C
             &amp; L</div>
@@ -164,17 +169,17 @@
     <script src="form.js"></script>
     <script src="nav.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var registryBtn = document.querySelector('a.btn.btn-warning[href*="amazon.com/wedding/registry"]');
-  if (!registryBtn) return;
+        document.addEventListener('DOMContentLoaded', function () {
+            var registryBtn = document.querySelector('a.btn.btn-warning[href*="amazon.com/wedding/registry"]');
+            if (!registryBtn) return;
 
-  var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-  if (!isMobile) {
-    registryBtn.setAttribute('target', '_blank');
-  }
-});
-</script>
+            if (!isMobile) {
+                registryBtn.setAttribute('target', '_blank');
+            }
+        });
+    </script>
 </body>
 
 </html>
